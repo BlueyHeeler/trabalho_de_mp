@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mensagem: MyText
+  user: one
+  feirante: one
+
+two:
+  mensagem: MyText
+  user: two
+  feirante: two

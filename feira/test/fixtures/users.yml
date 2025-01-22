@@ -2,12 +2,12 @@
 
 one:
   nome: MyString
-  idade: 1
-  tipo: MyString
+  email: MyString
+  senha: MyString
   localizacao: MyString
 
 two:
   nome: MyString
-  idade: 1
-  tipo: MyString
+  email: MyString
+  senha: MyString
   localizacao: MyString

@@ -1,0 +1,11 @@
+<% content_for :title, "New mensagem" %>
+
+<h1>New mensagem</h1>
+
+<%= render "form", mensagem: @mensagem %>
+
+<br>
+
+<div>
+  <%= link_to "Back to mensagems", mensagems_path %>
+</div>
