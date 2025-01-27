@@ -17,7 +17,7 @@ class FeirantesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create feirante" do
     assert_difference("Feirante.count") do
-      post feirantes_url, params: { feirante: { email: @feirante.email, localizacao: @feirante.localizacao, nome: @feirante.nome, senha: @feirante.senha, sobre: @feirante.sobre } }
+      post feirantes_url, params: { feirante: { contato: @feirante.contato, descricao: @feirante.descricao, email: @feirante.email, localizacao: @feirante.localizacao, nome: @feirante.nome, references: @feirante.references, senha: @feirante.senha, shopping: @feirante.shopping } }
     end
 
     assert_redirected_to feirante_url(Feirante.last)
@@ -34,7 +34,7 @@ class FeirantesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update feirante" do
-    patch feirante_url(@feirante), params: { feirante: { email: @feirante.email, localizacao: @feirante.localizacao, nome: @feirante.nome, senha: @feirante.senha, sobre: @feirante.sobre } }
+    patch feirante_url(@feirante), params: { feirante: { contato: @feirante.contato, descricao: @feirante.descricao, email: @feirante.email, localizacao: @feirante.localizacao, nome: @feirante.nome, references: @feirante.references, senha: @feirante.senha, shopping: @feirante.shopping } }
     assert_redirected_to feirante_url(@feirante)
   end
 

@@ -1,0 +1,47 @@
+Admin Homepage
+
+<%= current_admin.nome %>, você é um administrador!
+
+<%= link_to 'Logout', root_path, method: :delete %>
+
+<h2>Lista de Shoppings</h2>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Localização</th>
+      <th>Nota</th>
+      <th>Feirantes</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @shoppings.each do |shopping| %>
+      <tr>
+        <td><%= shopping.id %></td>
+        <td><%= shopping.nome %></td>
+        <td><%= shopping.localizacao %></td>
+        <td><%= shopping.nota %></td>
+        <td><%= link_to 'Ver feirantes', home_admin_feirantes_path(shopping_id: shopping.id) %></td>
+        <td>
+          <%= link_to "Edit this shopping", edit_shopping_path(shopping) %> | 
+          <%= link_to 'Deletar', 
+              shopping_path(shopping), 
+              data: { 
+                turbo_method: :delete,
+                turbo_confirm: 'Tem certeza que deseja deletar este shopping?' 
+              },
+            class: 'delete-btn' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="6">
+        <%= link_to 'Novo Shopping', new_shopping_path %>
+      </td>
+    </tr>
+  </tfoot>
+</table>

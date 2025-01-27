@@ -1,0 +1,33 @@
+<h1>Feirantes do Shopping <%= @shopping.nome %></h1>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @feirantes.each do |feirante| %>
+        <tr>
+          <td><%= feirante.id %></td>
+          <td><%= feirante.nome %></td>
+          <td><%= feirante.email %></td>
+          <td>
+            <%= link_to 'Editar', edit_feirante_path(feirante) %> |
+            <%= link_to 'Deletar', feirante_path(feirante), 
+                data: { 
+                  turbo_method: :delete,
+                  turbo_confirm: 'Tem certeza que deseja deletar este feirante?' 
+                },
+              class: 'delete-btn' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <%= link_to 'Novo Feirante', new_feirante_path %>
+  <%= link_to 'Voltar', home_admin_homepage_path %>

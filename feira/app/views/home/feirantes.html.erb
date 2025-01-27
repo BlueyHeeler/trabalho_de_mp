@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feirantes</title>
+</head>
+<body>
+  <h1>Feirantes do Shopping <%= @shopping.nome %></h1>
+  <%= link_to 'Voltar', home_feira_path %>
+  <%= link_to 'Logout', root_path, method: :delete %>
+
+  <h2>Lista de Feirantes</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Descrição</th>
+        <th>Produtos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @feirantes.each do |feirante| %>
+        <tr>
+          <td><%= feirante.id %></td>
+          <td><%= feirante.nome %></td>
+          <td><%= feirante.email %></td>
+          <td><%= feirante.descricao %></td>
+          <td><%= link_to 'Ver produtos', produtos_feirantes_path(feirante.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>

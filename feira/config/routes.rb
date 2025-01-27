@@ -1,21 +1,26 @@
 Rails.application.routes.draw do
-  resources :produtos
-  resources :historico_de_compras
-  resources :mensagems
+  resources :shoppings
   resources :avaliacaos
+  resources :wish_lists, only: [:index, :create, :destroy]
+  resources :mensagems
+  resources :produtos
   resources :feirantes
   resources :administradors
   resources :users
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  root "home#login"
+  get "home/feira" => "home#feira"
+  get "home/feirantes/:shopping_id" => "home#feirantes", as: :home_feirantes
+  get "home/produtos_feirantes/:feirante_id" => "home#produtos_feirantes", as: :produtos_feirantes
+  get "home/anotacoes" => "home#anotacoes"
+  get "home/adicionar/:produto_id" => "home#adicionar", as: :adicionar
+  get "home/admin_homepage" => "home#admin_homepage", as: :home_admin_homepage
+  get "home/feirante_homepage" => "home#feirante_homepage", as: :home_feirante_homepage
+  get "home/admin_feirantes" => "home#admin_feirantes", as: :home_admin_feirantes
+  
+  get 'login', to: 'home#login'
+  post 'login', to: 'home#authenticate'
+  delete 'logout', to: 'home#logout'
+  
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

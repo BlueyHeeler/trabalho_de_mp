@@ -26,12 +26,12 @@
     <%= form.text_field :preco %>
   </div>
 
-  <div>
+  <div style="display: none">
     <%= form.label :feirante_id, style: "display: block" %>
-    <%= form.text_field :feirante_id %>
+    <%= form.text_field :feirante_id, value: @feirante.id %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit %>%>
   </div>
 <% end %>

@@ -1,5 +1,5 @@
 class FeirantesController < ApplicationController
-  before_action :set_feirante, only: %i[ show edit update destroy ]
+  before_action :set_feirante, only: %i[show edit update destroy]
 
   # GET /feirantes or /feirantes.json
   def index
@@ -25,11 +25,10 @@ class FeirantesController < ApplicationController
 
     respond_to do |format|
       if @feirante.save
-        format.html { redirect_to @feirante, notice: "Feirante was successfully created." }
-        format.json { render :show, status: :created, location: @feirante }
+        redirect_to home_admin_feirantes_path(shopping_id: @feirante.shopping_id), notice: 'Feirante criado com sucesso.'
+
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @feirante.errors, status: :unprocessable_entity }
+        render :new
       end
     end
   end
@@ -38,7 +37,7 @@ class FeirantesController < ApplicationController
   def update
     respond_to do |format|
       if @feirante.update(feirante_params)
-        format.html { redirect_to @feirante, notice: "Feirante was successfully updated." }
+        format.html { redirect_to home_admin_feirantes_path, notice: "Feirante was successfully updated." }
         format.json { render :show, status: :ok, location: @feirante }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,10 +48,10 @@ class FeirantesController < ApplicationController
 
   # DELETE /feirantes/1 or /feirantes/1.json
   def destroy
-    @feirante.destroy!
+    @feirante.destroy
 
     respond_to do |format|
-      format.html { redirect_to feirantes_path, status: :see_other, notice: "Feirante was successfully destroyed." }
+      format.html { redirect_to  home_admin_feirantes_path, notice: "Feirante was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -60,11 +59,11 @@ class FeirantesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_feirante
-      @feirante = Feirante.find(params.expect(:id))
+      @feirante = Feirante.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def feirante_params
-      params.expect(feirante: [ :nome, :email, :senha, :localizacao, :sobre ])
+      params.require(:feirante).permit(:nome, :email, :password, :password_confirmation, :descricao, :shopping_id)
     end
 end

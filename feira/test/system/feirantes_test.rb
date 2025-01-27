@@ -14,11 +14,14 @@ class FeirantesTest < ApplicationSystemTestCase
     visit feirantes_url
     click_on "New feirante"
 
+    fill_in "Contato", with: @feirante.contato
+    fill_in "Descricao", with: @feirante.descricao
     fill_in "Email", with: @feirante.email
     fill_in "Localizacao", with: @feirante.localizacao
     fill_in "Nome", with: @feirante.nome
+    fill_in "References", with: @feirante.references
     fill_in "Senha", with: @feirante.senha
-    fill_in "Sobre", with: @feirante.sobre
+    fill_in "Shopping", with: @feirante.shopping
     click_on "Create Feirante"
 
     assert_text "Feirante was successfully created"
@@ -29,11 +32,14 @@ class FeirantesTest < ApplicationSystemTestCase
     visit feirante_url(@feirante)
     click_on "Edit this feirante", match: :first
 
+    fill_in "Contato", with: @feirante.contato
+    fill_in "Descricao", with: @feirante.descricao
     fill_in "Email", with: @feirante.email
     fill_in "Localizacao", with: @feirante.localizacao
     fill_in "Nome", with: @feirante.nome
+    fill_in "References", with: @feirante.references
     fill_in "Senha", with: @feirante.senha
-    fill_in "Sobre", with: @feirante.sobre
+    fill_in "Shopping", with: @feirante.shopping
     click_on "Update Feirante"
 
     assert_text "Feirante was successfully updated"

@@ -16,7 +16,7 @@ class UsersTest < ApplicationSystemTestCase
 
     fill_in "Email", with: @user.email
     fill_in "Localizacao", with: @user.localizacao
-    fill_in "Nome", with: @user.nome
+    fill_in "Name", with: @user.name
     fill_in "Senha", with: @user.senha
     click_on "Create User"
 
@@ -30,7 +30,7 @@ class UsersTest < ApplicationSystemTestCase
 
     fill_in "Email", with: @user.email
     fill_in "Localizacao", with: @user.localizacao
-    fill_in "Nome", with: @user.nome
+    fill_in "Name", with: @user.name
     fill_in "Senha", with: @user.senha
     click_on "Update User"
 

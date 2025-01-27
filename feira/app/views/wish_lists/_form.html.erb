@@ -1,0 +1,32 @@
+<%= form_with(model: wish_list) do |form| %>
+  <% if wish_list.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(wish_list.errors.count, "error") %> prohibited this wish_list from being saved:</h2>
+
+      <ul>
+        <% wish_list.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :quantidade, style: "display: block" %>
+    <%= form.number_field :quantidade %>
+  </div>
+
+  <div>
+    <%= form.label :produto_id, style: "display: block" %>
+    <%= form.text_field :produto_id %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

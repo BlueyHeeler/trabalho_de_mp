@@ -1,0 +1,39 @@
+<h1>Feirante Homepage</h1>
+
+<p><%= current_feirante.nome %>, você é um feirante!</p>
+<%= link_to 'Logout', root_path, method: :delete %>
+
+<div class="produtos-table">
+  <h2>Seus Produtos</h2>
+  
+  <% if current_feirante.produtos.any? %>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Descrição</th>
+          <th>Preço</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% current_feirante.produtos.each do |produto| %>
+          <tr>
+            <td><%= produto.nome %></td>
+            <td><%= produto.descricao %></td>
+            <td>R$ <%= number_with_precision(produto.preco, precision: 2) %></td>
+            <td>
+              <%= link_to 'Editar', edit_produto_path(produto, feirante_id: current_feirante.id) %> |
+              <%= link_to 'Deletar', produto_path(produto), 
+                    data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>Você ainda não possui produtos cadastrados.</p>
+  <% end %>
+  
+  <%= link_to 'Adicionar Novo Produto', new_produto_path(feirante_id: current_feirante.id), class: 'button' %>
+</div>

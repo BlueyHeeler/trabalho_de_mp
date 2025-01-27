@@ -1,12 +1,5 @@
-<% content_for :title, "Editing produto" %>
+<h1>Editar Produto</h1>
 
-<h1>Editing produto</h1>
+<%= render 'form', produto: @produto %>
 
-<%= render "form", produto: @produto %>
-
-<br>
-
-<div>
-  <%= link_to "Show this produto", @produto %> |
-  <%= link_to "Back to produtos", produtos_path %>
-</div>
+<%= link_to 'Voltar', home_feirante_homepage_path %>

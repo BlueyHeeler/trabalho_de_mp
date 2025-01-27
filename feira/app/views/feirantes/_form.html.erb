@@ -1,11 +1,11 @@
-<%= form_with(model: feirante) do |form| %>
+<%= form_with(model: feirante, local: true) do |form| %>
   <% if feirante.errors.any? %>
-    <div style="color: red">
+    <div id="error_explanation">
       <h2><%= pluralize(feirante.errors.count, "error") %> prohibited this feirante from being saved:</h2>
 
       <ul>
-        <% feirante.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% feirante.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
@@ -22,18 +22,23 @@
   </div>
 
   <div>
-    <%= form.label :senha, style: "display: block" %>
-    <%= form.text_field :senha %>
+    <%= form.label :password, style: "display: block" %>
+    <%= form.password_field :password %>
   </div>
 
   <div>
-    <%= form.label :localizacao, style: "display: block" %>
-    <%= form.text_field :localizacao %>
+    <%= form.label :password_confirmation, style: "display: block" %>
+    <%= form.password_field :password_confirmation %>
   </div>
 
   <div>
-    <%= form.label :sobre, style: "display: block" %>
-    <%= form.text_field :sobre %>
+    <%= form.label :descricao, style: "display: block" %>
+    <%= form.text_field :descricao %>
+  </div>
+
+  <div>
+    <%= form.label :shopping_id, "Shopping", style: "display: block" %>
+    <%= form.collection_select :shopping_id, Shopping.all, :id, :nome, prompt: "Selecione um Shopping" %>
   </div>
 
   <div>

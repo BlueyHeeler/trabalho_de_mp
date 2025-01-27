@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Feira</title>
+</head>
+<body>
+  <h1>Bem-vindo à Feira, <%= current_user.name %>!</h1>
+
+  <%= link_to 'Logout', root_path, method: :delete %>
+
+  <%= link_to 'Wish List', home_anotacoes_path %>
+
+
+  <h2>Lista de Shoppings</h2>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Localização</th>
+        <th>Nota</th>
+        <th>Feirantes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shoppings.each do |shopping| %>
+        <tr>
+          <td><%= shopping.id %></td>
+          <td><%= shopping.nome %></td>
+          <td><%= shopping.localizacao %></td>
+          <td><%= shopping.nota %></td>
+          <td><%= link_to 'Ver feirantes', home_feirantes_path(shopping.id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>

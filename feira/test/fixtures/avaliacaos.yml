@@ -3,11 +3,13 @@
 one:
   nota: 1
   comentario: MyString
-  user: one
+  data: 2025-01-25 11:47:48
+  usuario: one
   produto: one
 
 two:
   nota: 1
   comentario: MyString
-  user: two
+  data: 2025-01-25 11:47:48
+  usuario: two
   produto: two

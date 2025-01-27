@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @wish_list %>
+
+<div>
+  <%= link_to "Edit this wish list", edit_wish_list_path(@wish_list) %> |
+  <%= link_to "Back to wish lists", wish_lists_path %>
+
+  <%= button_to "Destroy this wish list", @wish_list, method: :delete %>
+</div>

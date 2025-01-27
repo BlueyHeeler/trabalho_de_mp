@@ -65,6 +65,6 @@ class AvaliacaosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def avaliacao_params
-      params.expect(avaliacao: [ :nota, :comentario, :user_id, :produto_id ])
+      params.expect(avaliacao: [ :nota, :comentario, :data, :usuario_id, :produto_id ])
     end
 end

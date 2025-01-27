@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+
+  <% if flash[:alert] %>
+    <p style="color: red;"><%= flash[:alert] %></p>
+  <% end %>
+
+  <%= form_with url: login_path, method: :post do |form| %>
+    <div>
+      <%= form.label :email, "Email" %>
+      <%= form.text_field :email, required: true %>
+    </div>
+
+    <div>
+      <%= form.label :password, "Senha" %>
+      <%= form.password_field :password, required: true %>
+    </div>
+    
+    <div>
+      <%= form.label :user_type, "Tipo de Usuário" %>
+      <div>
+        <%= form.radio_button :user_type, 'regular', checked: true %>
+        <%= form.label :user_type_regular, 'Usuário Regular' %>
+        
+        <%= form.radio_button :user_type, 'admin' %>
+        <%= form.label :user_type_admin, 'Administrador' %>
+        
+        <%= form.radio_button :user_type, 'feirante' %>
+        <%= form.label :user_type_feirante, 'Feirante' %>
+      </div>
+    </div>
+
+    <div>
+      <%= form.submit "Entrar" %>
+    </div>
+  <% end %>
+</body>
+</html>

@@ -15,9 +15,10 @@ class AvaliacaosTest < ApplicationSystemTestCase
     click_on "New avaliacao"
 
     fill_in "Comentario", with: @avaliacao.comentario
+    fill_in "Data", with: @avaliacao.data
     fill_in "Nota", with: @avaliacao.nota
     fill_in "Produto", with: @avaliacao.produto_id
-    fill_in "User", with: @avaliacao.user_id
+    fill_in "Usuario", with: @avaliacao.usuario_id
     click_on "Create Avaliacao"
 
     assert_text "Avaliacao was successfully created"
@@ -29,9 +30,10 @@ class AvaliacaosTest < ApplicationSystemTestCase
     click_on "Edit this avaliacao", match: :first
 
     fill_in "Comentario", with: @avaliacao.comentario
+    fill_in "Data", with: @avaliacao.data
     fill_in "Nota", with: @avaliacao.nota
     fill_in "Produto", with: @avaliacao.produto_id
-    fill_in "User", with: @avaliacao.user_id
+    fill_in "Usuario", with: @avaliacao.usuario_id
     click_on "Update Avaliacao"
 
     assert_text "Avaliacao was successfully updated"

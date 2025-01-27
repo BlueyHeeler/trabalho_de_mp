@@ -5,11 +5,17 @@ one:
   email: MyString
   senha: MyString
   localizacao: MyString
-  sobre: MyString
+  contato: MyString
+  descricao: MyString
+  shopping: MyString
+  references: MyString
 
 two:
   nome: MyString
   email: MyString
   senha: MyString
   localizacao: MyString
-  sobre: MyString
+  contato: MyString
+  descricao: MyString
+  shopping: MyString
+  references: MyString

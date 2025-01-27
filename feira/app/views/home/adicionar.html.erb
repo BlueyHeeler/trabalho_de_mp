@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adicionar à Wish List</title>
+</head>
+<body>
+  <h1>Adicionar <%= @produto.nome %> à Wish List</h1>
+  
+  <%= form_with(model: @wish_list, local: true) do |form| %>
+    <div>
+      <p>Preço: <%= @produto.preco %></p>
+      <%= form.label :quantidade %>
+      <%= form.number_field :quantidade, min: 1 %>
+      <%= form.hidden_field :produto_id, value: @produto.id %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.hidden_field :feirante_id, value: @produto.feirante_id %>
+    </div>
+
+    <div>
+      <%= form.submit "Adicionar à Wish List" %>
+    </div>
+  <% end %>
+
+  <%= link_to 'Voltar', :back %>
+</body>
+</html>

@@ -1,2 +1,4 @@
 class User < ApplicationRecord
-end
+    has_secure_password
+    has_many :wish_lists
+  end

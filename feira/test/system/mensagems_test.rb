@@ -14,9 +14,10 @@ class MensagemsTest < ApplicationSystemTestCase
     visit mensagems_url
     click_on "New mensagem"
 
+    fill_in "Data", with: @mensagem.data
     fill_in "Feirante", with: @mensagem.feirante_id
     fill_in "Mensagem", with: @mensagem.mensagem
-    fill_in "User", with: @mensagem.user_id
+    fill_in "Usuario", with: @mensagem.usuario_id
     click_on "Create Mensagem"
 
     assert_text "Mensagem was successfully created"
@@ -27,9 +28,10 @@ class MensagemsTest < ApplicationSystemTestCase
     visit mensagem_url(@mensagem)
     click_on "Edit this mensagem", match: :first
 
+    fill_in "Data", with: @mensagem.data
     fill_in "Feirante", with: @mensagem.feirante_id
     fill_in "Mensagem", with: @mensagem.mensagem
-    fill_in "User", with: @mensagem.user_id
+    fill_in "Usuario", with: @mensagem.usuario_id
     click_on "Update Mensagem"
 
     assert_text "Mensagem was successfully updated"

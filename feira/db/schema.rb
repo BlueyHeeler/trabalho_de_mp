@@ -10,54 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_22_193305) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_26_140923) do
   create_table "administradors", force: :cascade do |t|
     t.string "nome"
     t.string "email"
-    t.string "senha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
   create_table "avaliacaos", force: :cascade do |t|
     t.integer "nota"
     t.string "comentario"
-    t.integer "user_id", null: false
+    t.datetime "data"
+    t.integer "usuario_id", null: false
     t.integer "produto_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["produto_id"], name: "index_avaliacaos_on_produto_id"
-    t.index ["user_id"], name: "index_avaliacaos_on_user_id"
+    t.index ["usuario_id"], name: "index_avaliacaos_on_usuario_id"
   end
 
   create_table "feirantes", force: :cascade do |t|
     t.string "nome"
     t.string "email"
-    t.string "senha"
-    t.string "localizacao"
-    t.string "sobre"
+    t.string "descricao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "historico_de_compras", force: :cascade do |t|
-    t.integer "quantidade"
-    t.integer "user_id", null: false
-    t.integer "produto_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["produto_id"], name: "index_historico_de_compras_on_produto_id"
-    t.index ["user_id"], name: "index_historico_de_compras_on_user_id"
+    t.string "password_digest"
+    t.integer "shopping_id"
+    t.index ["shopping_id"], name: "index_feirantes_on_shopping_id"
   end
 
   create_table "mensagems", force: :cascade do |t|
-    t.text "mensagem"
-    t.integer "user_id", null: false
+    t.string "mensagem"
+    t.datetime "data"
+    t.integer "usuario_id", null: false
     t.integer "feirante_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["feirante_id"], name: "index_mensagems_on_feirante_id"
-    t.index ["user_id"], name: "index_mensagems_on_user_id"
+    t.index ["usuario_id"], name: "index_mensagems_on_usuario_id"
   end
 
   create_table "produtos", force: :cascade do |t|
@@ -70,20 +63,40 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_22_193305) do
     t.index ["feirante_id"], name: "index_produtos_on_feirante_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "shoppings", force: :cascade do |t|
     t.string "nome"
+    t.string "localizacao"
+    t.float "nota"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
     t.string "email"
     t.string "senha"
     t.string "localizacao"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+  end
+
+  create_table "wish_lists", force: :cascade do |t|
+    t.integer "quantidade"
+    t.integer "produto_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["produto_id"], name: "index_wish_lists_on_produto_id"
+    t.index ["user_id"], name: "index_wish_lists_on_user_id"
   end
 
   add_foreign_key "avaliacaos", "produtos"
-  add_foreign_key "avaliacaos", "users"
-  add_foreign_key "historico_de_compras", "produtos"
-  add_foreign_key "historico_de_compras", "users"
+  add_foreign_key "avaliacaos", "usuarios"
+  add_foreign_key "feirantes", "shoppings"
   add_foreign_key "mensagems", "feirantes"
-  add_foreign_key "mensagems", "users"
+  add_foreign_key "mensagems", "usuarios"
   add_foreign_key "produtos", "feirantes"
+  add_foreign_key "wish_lists", "produtos"
+  add_foreign_key "wish_lists", "users"
 end

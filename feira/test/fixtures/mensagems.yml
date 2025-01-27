@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  mensagem: MyText
-  user: one
+  mensagem: MyString
+  data: 2025-01-25 11:47:45
+  usuario: one
   feirante: one
 
 two:
-  mensagem: MyText
-  user: two
+  mensagem: MyString
+  data: 2025-01-25 11:47:45
+  usuario: two
   feirante: two

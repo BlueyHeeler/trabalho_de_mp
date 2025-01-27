@@ -65,6 +65,6 @@ class MensagemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def mensagem_params
-      params.expect(mensagem: [ :mensagem, :user_id, :feirante_id ])
+      params.expect(mensagem: [ :mensagem, :data, :usuario_id, :feirante_id ])
     end
 end
