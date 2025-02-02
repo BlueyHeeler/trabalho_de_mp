@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_26_140923) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_27_201921) do
   create_table "administradors", force: :cascade do |t|
     t.string "nome"
     t.string "email"
@@ -42,15 +42,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_26_140923) do
     t.index ["shopping_id"], name: "index_feirantes_on_shopping_id"
   end
 
-  create_table "mensagems", force: :cascade do |t|
-    t.string "mensagem"
-    t.datetime "data"
-    t.integer "usuario_id", null: false
+  create_table "messages", force: :cascade do |t|
+    t.string "texto"
+    t.integer "user_id", null: false
     t.integer "feirante_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["feirante_id"], name: "index_mensagems_on_feirante_id"
-    t.index ["usuario_id"], name: "index_mensagems_on_usuario_id"
+    t.index ["feirante_id"], name: "index_messages_on_feirante_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "produtos", force: :cascade do |t|
@@ -94,8 +93,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_26_140923) do
   add_foreign_key "avaliacaos", "produtos"
   add_foreign_key "avaliacaos", "usuarios"
   add_foreign_key "feirantes", "shoppings"
-  add_foreign_key "mensagems", "feirantes"
-  add_foreign_key "mensagems", "usuarios"
+  add_foreign_key "messages", "feirantes"
+  add_foreign_key "messages", "users"
   add_foreign_key "produtos", "feirantes"
   add_foreign_key "wish_lists", "produtos"
   add_foreign_key "wish_lists", "users"

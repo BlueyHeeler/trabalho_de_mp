@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :messages
   resources :shoppings
   resources :avaliacaos
   resources :wish_lists, only: [:index, :create, :destroy]
-  resources :mensagems
   resources :produtos
   resources :feirantes
   resources :administradors

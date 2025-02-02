@@ -1,0 +1,5 @@
+app/jobs/application_job.rb 2d7aea448b6f7b6a9c182cd5369df41b5f338a7c
+app/models/application_record.rb 6b1daaebd598ea282948794a81864e254bef6730
+app/helpers/application_helper.rb eef3d3adce96afe8b14c19b6135323f47543d979
+app/mailers/application_mailer.rb 79afbabf0317d864606ce6383f54416d946d80e0
+app/controllers/application_controller.rb d51715a9d82cdaa2370d1e58d41182213900784a
