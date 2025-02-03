@@ -49,6 +49,10 @@ yard:
 	@echo "Gerando documentação com YARD..."
 	yard doc
 
+rspec:
+	@echo "Executando testes com RSpec..."
+	bundle exec rspec spec/features
+
 # Tarefa padrão: instala as gems e executa as migrações
 all: install migrate
 	@echo "Projeto preparado!"

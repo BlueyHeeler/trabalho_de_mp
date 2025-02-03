@@ -27,12 +27,13 @@
         <tr>
           <td><%= shopping.id %></td>
           <td><%= shopping.nome %></td>
-          <td><%= shopping.localizacao %></td>
+          <td class="distance"><%= shopping.distance_to(current_user).round(2) %> km</td>
           <td><%= shopping.nota %></td>
           <td><%= link_to 'Ver feirantes', home_feirantes_path(shopping.id) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
+<%= button_to 'Ordenar por Localização', home_feira_path(sort: 'localizacao'), method: :get %>
 </body>
 </html>

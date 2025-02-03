@@ -1,5 +1,14 @@
 source "https://rubygems.org"
 
+group :test do
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+end
+
+gem 'rubocop', require: false
+gem 'reek', require: false
+gem 'yard', require: false
+
 gem 'bcrypt', '~> 3.1.7'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.1"

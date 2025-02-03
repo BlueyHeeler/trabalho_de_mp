@@ -31,9 +31,13 @@ class HomeController < ApplicationController
       session[:user_id] = nil
       redirect_to login_path, notice: 'Logged out'
     end
-  
+    
     def feira
-        @shoppings = Shopping.all
+      @shoppings = if params[:sort] == 'distance'
+        Shopping.all.sort_by { |shopping| shopping.distance_to(current_user) }
+      else
+        Shopping.all
+      end
     end
   
     def feirantes
