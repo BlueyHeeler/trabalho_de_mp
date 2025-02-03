@@ -7,9 +7,9 @@ class ApplicationController < ActionController::Base
 
   def current_user
     return @current_user if defined?(@current_user)
-    if session[:user_type] == 'admin'
+    if session[:user_type] == "admin"
       @current_user = Administrador.find_by(id: session[:user_id])
-    elsif session[:user_type] == 'feirante'
+    elsif session[:user_type] == "feirante"
       @current_user = Feirante.find_by(id: session[:user_id])
     else
       @current_user = User.find_by(id: session[:user_id])
@@ -17,11 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
   def current_admin
-    current_user if session[:user_type] == 'admin'
+    current_user if session[:user_type] == "admin"
   end
 
   def current_feirante
-    current_user if session[:user_type] == 'feirante'
+    current_user if session[:user_type] == "feirante"
   end
 
   def require_login

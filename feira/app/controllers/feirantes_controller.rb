@@ -25,7 +25,7 @@ class FeirantesController < ApplicationController
 
     respond_to do |format|
       if @feirante.save
-        redirect_to home_admin_feirantes_path(shopping_id: @feirante.shopping_id), notice: 'Feirante criado com sucesso.'
+        redirect_to home_admin_feirantes_path(shopping_id: @feirante.shopping_id), notice: "Feirante criado com sucesso."
 
       else
         render :new
@@ -51,7 +51,7 @@ class FeirantesController < ApplicationController
     @feirante.destroy
 
     respond_to do |format|
-      format.html { redirect_to  home_admin_feirantes_path, notice: "Feirante was successfully destroyed." }
+      format.html { redirect_to home_admin_feirantes_path, notice: "Feirante was successfully destroyed." }
       format.json { head :no_content }
     end
   end

@@ -4,7 +4,6 @@ class User < ApplicationRecord
 
     def coordinates
       return [] unless localizacao
-      localizacao.split(',').map(&:to_f)
+      localizacao.split(",").map(&:to_f)
     end
-    
-  end
+end

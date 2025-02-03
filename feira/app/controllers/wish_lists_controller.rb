@@ -22,11 +22,11 @@ class WishListsController < ApplicationController
   # POST /wish_lists or /wish_lists.json
   def create
     @wish_list = WishList.new(wish_list_params)
-    
+
     if @wish_list.save
-      redirect_to produtos_feirantes_path(params[:wish_list][:feirante_id]), notice: 'Produto adicionado à Wish List.'
+      redirect_to produtos_feirantes_path(params[:wish_list][:feirante_id]), notice: "Produto adicionado à Wish List."
     else
-      redirect_to produtos_feirantes_path(params[:wish_list][:feirante_id]), alert: 'Erro ao adicionar produto.'
+      redirect_to produtos_feirantes_path(params[:wish_list][:feirante_id]), alert: "Erro ao adicionar produto."
     end
   end
 
@@ -46,7 +46,7 @@ class WishListsController < ApplicationController
   # DELETE /wish_lists/1 or /wish_lists/1.json
   def destroy
     @wish_list.destroy
-    redirect_to home_anotacoes_path, notice: 'Item removido com sucesso.'
+    redirect_to home_anotacoes_path, notice: "Item removido com sucesso."
   end
 
   private

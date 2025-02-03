@@ -1,15 +1,15 @@
 class HomeController < ApplicationController
-    before_action :require_login, only: [:feira]
-  
+    before_action :require_login, only: [ :feira ]
+
     def login
     end
-  
+
     def authenticate
       case params[:user_type]
-      when 'admin'
+      when "admin"
         user = Administrador.find_by(email: params[:email])
         success_path = home_admin_homepage_path
-      when 'feirante'
+      when "feirante"
         user = Feirante.find_by(email: params[:email])
         success_path = home_feirante_homepage_path
       else
@@ -20,36 +20,36 @@ class HomeController < ApplicationController
       if user&.authenticate(params[:password])
         session[:user_id] = user.id
         session[:user_type] = params[:user_type]
-        redirect_to success_path, notice: 'Logged in successfully'
+        redirect_to success_path, notice: "Logged in successfully"
       else
-        flash.now[:alert] = 'Invalid email or password'
+        flash.now[:alert] = "Invalid email or password"
         render :login
       end
     end
-  
+
     def logout
       session[:user_id] = nil
-      redirect_to login_path, notice: 'Logged out'
+      redirect_to login_path, notice: "Logged out"
     end
-    
+
     def feira
-      @shoppings = if params[:sort] == 'distance'
+      @shoppings = if params[:sort] == "distance"
         Shopping.all.sort_by { |shopping| shopping.distance_to(current_user) }
       else
         Shopping.all
       end
     end
-  
+
     def feirantes
         @shopping = Shopping.find(params[:shopping_id])
         @feirantes = @shopping.feirantes
       end
-  
+
       def produtos_feirantes
         @feirante = Feirante.find(params[:feirante_id])
         @produtos = @feirante.produtos
       end
-  
+
     def anotacoes
         @wish_lists = current_user.wish_lists.includes(:produto)
     end
@@ -74,6 +74,6 @@ class HomeController < ApplicationController
     def logout
       session[:user_id] = nil
       session[:user_type] = nil
-      redirect_to login_path, notice: 'Logged out successfully'
+      redirect_to login_path, notice: "Logged out successfully"
     end
-  end
+end
