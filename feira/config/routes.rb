@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   root "home#login"
   get "home/feira" => "home#feira"
+  get "home/feira/sort" => "home#feira", as: :sort_feira
+
   get "home/feirantes/:shopping_id" => "home#feirantes", as: :home_feirantes
   get "home/produtos_feirantes/:feirante_id" => "home#produtos_feirantes", as: :produtos_feirantes
   get "home/anotacoes" => "home#anotacoes"

@@ -34,6 +34,5 @@
       <% end %>
     </tbody>
   </table>
-<%= button_to 'Ordenar por Localização', home_feira_path(sort: 'localizacao'), method: :get %>
-</body>
+<%= link_to 'Ordenar por Distância', sort_feira_path(sort: 'distance'), class: 'btn btn-primary' %></body>
 </html>
