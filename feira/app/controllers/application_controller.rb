@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_feirante
 
   private
-
+  
   def current_user
     return @current_user if defined?(@current_user)
     if session[:user_type] == "admin"

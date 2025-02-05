@@ -1,9 +1,6 @@
 # Class representing a vendor/merchant in a shopping center.
 # This class manages vendor information and their relationships.
 #
-# @attr_accessor [String] password - Securely hashed password for vendor authentication
-# @attr [Shopping] shopping - The shopping center where the vendor operates
-# @attr [Array<Produto>] produtos - Collection of products associated with this vendor
 #
 # Associations:
 # - Belongs to a shopping center
