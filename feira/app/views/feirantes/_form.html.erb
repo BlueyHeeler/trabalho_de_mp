@@ -37,6 +37,12 @@
   </div>
 
   <div>
+    <%= form.label :categoria, style: "display: block" %>
+    <%= form.text_field :categoria %>
+  </div>
+  
+
+  <div>
     <%= form.label :shopping_id, "Shopping", style: "display: block" %>
     <%= form.collection_select :shopping_id, Shopping.all, :id, :nome, prompt: "Selecione um Shopping" %>
   </div>

@@ -1,2 +1,3 @@
-module ShoppingsHelpers
-end
+module ShoppingsHelper
+    # Your helper methods here
+  end

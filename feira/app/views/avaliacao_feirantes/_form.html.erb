@@ -1,0 +1,29 @@
+<%= form_with(model: avaliacao_feirante) do |form| %>
+  <% if avaliacao_feirante.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(avaliacao_feirante.errors.count, "error") %> prohibited this avaliacao_feirante from being saved:</h2>
+
+      <ul>
+        <% avaliacao_feirante.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nota, style: "display: block" %>
+    <%= form.number_field :nota %>
+  </div>
+
+  <div>
+    <%= form.label :comentario, style: "display: block" %>
+    <%= form.text_area :comentario %>
+  </div>
+
+  <%= form.hidden_field :feirante_id %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

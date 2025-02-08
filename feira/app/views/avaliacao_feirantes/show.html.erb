@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @avaliacao_feirante %>
+
+<div>
+  <%= link_to "Edit this avaliacao feirante", edit_avaliacao_feirante_path(@avaliacao_feirante) %> |
+  <%= link_to "Back to avaliacao feirantes", avaliacao_feirantes_path %>
+
+  <%= button_to "Destroy this avaliacao feirante", @avaliacao_feirante, method: :delete %>
+</div>

@@ -31,5 +31,17 @@
       <% end %>
     </tbody>
   </table>
+
+  <h2>Avaliações do Feirante</h2>
+  <div class="avaliacoes-container">
+    <% @feirante.avaliacao_feirantes.each do |avaliacao| %>
+      <div class="avaliacao">
+        <p><strong>Nota:</strong> <%= avaliacao.nota %></p>
+        <p><strong>Comentário:</strong> <%= avaliacao.comentario %></p>
+        <p><strong>Usuário:</strong> <%= avaliacao.user.name %></p>
+        ================================================================
+      </div>
+    <% end %>
+  </div>
 </body>
 </html>

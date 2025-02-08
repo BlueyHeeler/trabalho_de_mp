@@ -22,8 +22,13 @@
   </div>
 
   <div>
-    <%= form.label :senha, style: "display: block" %>
-    <%= form.text_field :senha %>
+    <%= form.label :password, style: "display: block" %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation, "Confirmação de Senha", style: "display: block" %>
+    <%= form.password_field :password_confirmation %>
   </div>
 
   <div>

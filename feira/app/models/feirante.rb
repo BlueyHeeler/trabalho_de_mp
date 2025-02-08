@@ -12,4 +12,17 @@ class Feirante < ApplicationRecord
   has_secure_password
   belongs_to :shopping
   has_many :produtos, dependent: :destroy
+  has_many :avaliacao_feirantes, dependent: :destroy
+
+  def average_rating
+    avaliacao_feirantes.average(:nota).to_f.round(2)
+  end
+
+  def user_has_reviewed?(user)
+    avaliacao_feirantes.exists?(user: user)
+  end
+
+  def user_review(user)
+    avaliacao_feirantes.find_by(user: user)
+  end
 end

@@ -7,19 +7,21 @@
   <h1>Bem-vindo à Feira, <%= current_user.name %>!</h1>
 
   <%= link_to 'Logout', root_path, method: :delete %>
-
   <%= link_to 'Wish List', home_anotacoes_path %>
 
-
   <h2>Lista de Shoppings</h2>
+  <%= link_to 'Ordenar por Distância', sort_feira_path(sort: 'distance'), class: 'btn btn-primary' %>
+  <%= link_to 'Ordenar por Nota', sort_feira_path(sort: 'nota'), class: 'btn btn-primary' %>
+
   <table border="1">
     <thead>
       <tr>
         <th>ID</th>
         <th>Nome</th>
         <th>Localização</th>
-        <th>Nota</th>
         <th>Feirantes</th>
+        <th>Nota</th>
+        <th>Avaliar</th>
       </tr>
     </thead>
     <tbody>
@@ -28,11 +30,21 @@
           <td><%= shopping.id %></td>
           <td><%= shopping.nome %></td>
           <td class="distance"><%= shopping.distance_to(current_user).round(2) %> km</td>
-          <td><%= shopping.nota %></td>
           <td><%= link_to 'Ver feirantes', home_feirantes_path(shopping.id) %></td>
+          <td><%= shopping.average_rating %></td>
+          <td>
+            <% if shopping.user_has_reviewed?(current_user) %>
+              <%= link_to 'Editar Avaliação', edit_avaliacao_shopping_path(shopping.user_review(current_user)) %>
+              <%= link_to 'Deletar Avaliação', 
+                  avaliacao_shopping_path(shopping.user_review(current_user)), 
+                  data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
+            <% else %>
+              <%= link_to 'Avaliar', new_avaliacao_shopping_path(shopping_id: shopping.id) %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
-<%= link_to 'Ordenar por Distância', sort_feira_path(sort: 'distance'), class: 'btn btn-primary' %></body>
+</body>
 </html>

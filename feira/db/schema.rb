@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_26_140923) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_08_033835) do
   create_table "administradors", force: :cascade do |t|
     t.string "nome"
     t.string "email"
@@ -19,16 +19,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_26_140923) do
     t.string "password_digest"
   end
 
-  create_table "avaliacaos", force: :cascade do |t|
+  create_table "avaliacao_feirantes", force: :cascade do |t|
     t.integer "nota"
-    t.string "comentario"
-    t.datetime "data"
-    t.integer "user_id", null: false
-    t.integer "produto_id", null: false
+    t.text "comentario"
+    t.integer "feirante_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["produto_id"], name: "index_avaliacaos_on_produto_id"
-    t.index ["user_id"], name: "index_avaliacaos_on_user_id"
+    t.integer "user_id"
+    t.index ["feirante_id"], name: "index_avaliacao_feirantes_on_feirante_id"
+    t.index ["user_id"], name: "index_avaliacao_feirantes_on_user_id"
+  end
+
+  create_table "avaliacao_shoppings", force: :cascade do |t|
+    t.integer "nota"
+    t.text "comentario"
+    t.integer "shopping_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["shopping_id"], name: "index_avaliacao_shoppings_on_shopping_id"
+    t.index ["user_id"], name: "index_avaliacao_shoppings_on_user_id"
   end
 
   create_table "feirantes", force: :cascade do |t|
@@ -39,6 +49,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_26_140923) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.integer "shopping_id"
+    t.string "categoria"
     t.index ["shopping_id"], name: "index_feirantes_on_shopping_id"
   end
 
@@ -65,7 +76,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_26_140923) do
   create_table "shoppings", force: :cascade do |t|
     t.string "nome"
     t.string "localizacao"
-    t.float "nota"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -90,8 +100,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_26_140923) do
     t.index ["user_id"], name: "index_wish_lists_on_user_id"
   end
 
-  add_foreign_key "avaliacaos", "produtos"
-  add_foreign_key "avaliacaos", "users"
+  add_foreign_key "avaliacao_feirantes", "feirantes"
+  add_foreign_key "avaliacao_feirantes", "users"
+  add_foreign_key "avaliacao_shoppings", "shoppings"
+  add_foreign_key "avaliacao_shoppings", "users"
   add_foreign_key "feirantes", "shoppings"
   add_foreign_key "mensagems", "feirantes"
   add_foreign_key "mensagems", "users"

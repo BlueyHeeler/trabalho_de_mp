@@ -9,27 +9,56 @@
   <%= link_to 'Logout', root_path, method: :delete %>
 
   <h2>Lista de Feirantes</h2>
-  <table border="1">
-    <thead>
+<%= link_to 'Ordenar por Categoria', home_feirantes_path(order: 'categoria'), class: 'btn btn-primary' %>
+<%= link_to 'Ordenar por Nota', home_feirantes_path(order: 'nota'), class: 'btn btn-primary' %>
+<table border="1">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Descrição</th>
+      <th>Categoria</th>
+      <th>Produtos</th>
+      <th>Nota</th>
+      <th>Avaliar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @feirantes.each do |feirante| %>
       <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Email</th>
-        <th>Descrição</th>
-        <th>Produtos</th>
+        <td><%= feirante.id %></td>
+        <td><%= feirante.nome %></td>
+        <td><%= feirante.email %></td>
+        <td><%= feirante.descricao %></td>
+        <td><%= feirante.categoria %></td>
+        <td><%= link_to 'Ver produtos', produtos_feirantes_path(feirante.id) %></td>
+        <td><%= feirante.average_rating %></td>
+        <td>
+          <% if feirante.user_has_reviewed?(current_user) %>
+            <%= link_to 'Editar Avaliação', edit_avaliacao_feirante_path(feirante.user_review(current_user)) %>
+            <%= link_to 'Deletar Avaliação', 
+                avaliacao_feirante_path(feirante.user_review(current_user)), 
+                data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
+          <% else %>
+            <%= link_to 'Avaliar', new_avaliacao_feirante_path(feirante_id: feirante.id) %>
+          <% end %>
+        </td>
       </tr>
-    </thead>
-    <tbody>
-      <% @feirantes.each do |feirante| %>
-        <tr>
-          <td><%= feirante.id %></td>
-          <td><%= feirante.nome %></td>
-          <td><%= feirante.email %></td>
-          <td><%= feirante.descricao %></td>
-          <td><%= link_to 'Ver produtos', produtos_feirantes_path(feirante.id) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Avaliações do Shopping <%= @shopping.nome%> </h2>
+<div class="avaliacoes-container">
+  <% @shopping.avaliacao_shoppings.each do |avaliacao| %>
+    <div class="avaliacao">
+      <p><strong>Nota:</strong> <%= avaliacao.nota %></p>
+      <p><strong>Comentário:</strong> <%= avaliacao.comentario %></p>
+      <p><strong>Usuário:</strong> <%= avaliacao.user.name %></p>
+      ===========================================================
+    </div>
+  <% end %>
+</div>
 </body>
 </html>

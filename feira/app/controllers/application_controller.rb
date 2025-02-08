@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :current_admin
   helper_method :current_feirante
-
+  
   private
   
   def current_user

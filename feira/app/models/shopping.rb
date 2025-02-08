@@ -1,8 +1,20 @@
 class Shopping < ApplicationRecord
   include DistanceCalculator
-
+  has_many :avaliacao_shoppings, dependent: :destroy
   has_many :feirantes, dependent: :destroy
 
+  def average_rating
+    avaliacao_shoppings.average(:nota).to_f.round(2)
+  end
+
+  def user_has_reviewed?(user)
+    avaliacao_shoppings.exists?(user: user)
+  end
+
+  def user_review(user)
+    avaliacao_shoppings.find_by(user: user)
+  end
+  
   def coordinates
     return [] unless localizacao
     localizacao.split(",").map(&:to_f)

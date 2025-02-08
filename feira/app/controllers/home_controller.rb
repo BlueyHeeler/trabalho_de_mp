@@ -33,17 +33,25 @@ class HomeController < ApplicationController
     end
 
     def feira
-      @shoppings = if params[:sort] == "distance"
-        Shopping.all.sort_by { |shopping| shopping.distance_to(current_user) }
-      else
-        Shopping.all
+      @shoppings = Shopping.all
+  
+      if params[:sort] == 'distance'
+        @shoppings = @shoppings.sort_by { |shopping| shopping.distance_to(current_user) }
+      elsif params[:sort] == 'nota'
+        @shoppings = @shoppings.sort_by { |shopping| -shopping.average_rating }
       end
     end
 
     def feirantes
-        @shopping = Shopping.find(params[:shopping_id])
-        @feirantes = @shopping.feirantes
+      @shopping = Shopping.find(params[:shopping_id])
+      @feirantes = @shopping.feirantes
+  
+      if params[:order] == 'categoria'
+        @feirantes = @feirantes.order(:categoria)
+      elsif params[:order] == 'nota'
+        @feirantes = @feirantes.sort_by { |feirante| -feirante.average_rating }
       end
+    end
 
       def produtos_feirantes
         @feirante = Feirante.find(params[:feirante_id])

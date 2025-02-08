@@ -64,6 +64,6 @@ class FeirantesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def feirante_params
-      params.require(:feirante).permit(:nome, :email, :password, :password_confirmation, :descricao, :shopping_id)
+      params.require(:feirante).permit(:nome, :email, :password, :password_confirmation, :descricao, :shopping_id, :categoria)
     end
 end

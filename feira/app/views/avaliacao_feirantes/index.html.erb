@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Avaliacao feirantes" %>
+
+<h1>Avaliacao feirantes</h1>
+
+<div id="avaliacao_feirantes">
+  <% @avaliacao_feirantes.each do |avaliacao_feirante| %>
+    <%= render avaliacao_feirante %>
+    <p>
+      <%= link_to "Show this avaliacao feirante", avaliacao_feirante %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New avaliacao feirante", new_avaliacao_feirante_path %>

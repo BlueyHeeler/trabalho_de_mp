@@ -11,7 +11,6 @@ Admin Homepage
       <th>ID</th>
       <th>Nome</th>
       <th>Localização</th>
-      <th>Nota</th>
       <th>Feirantes</th>
       <th>Ações</th>
     </tr>
@@ -22,7 +21,6 @@ Admin Homepage
         <td><%= shopping.id %></td>
         <td><%= shopping.nome %></td>
         <td><%= shopping.localizacao %></td>
-        <td><%= shopping.nota %></td>
         <td><%= link_to 'Ver feirantes', home_admin_feirantes_path(shopping_id: shopping.id) %></td>
         <td>
           <%= link_to "Edit this shopping", edit_shopping_path(shopping) %> | 

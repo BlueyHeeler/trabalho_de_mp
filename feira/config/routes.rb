@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :avaliacao_feirantes
+  resources :avaliacao_shoppings
   resources :messages
   resources :shoppings
   resources :avaliacaos
