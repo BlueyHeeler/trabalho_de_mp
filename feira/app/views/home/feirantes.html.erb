@@ -4,61 +4,79 @@
   <title>Feirantes</title>
 </head>
 <body>
-  <h1>Feirantes do Shopping <%= @shopping.nome %></h1>
-  <%= link_to 'Voltar', home_feira_path %>
-  <%= link_to 'Logout', root_path, method: :delete %>
+  <div class="feira-container">
+    <div class="feira-content">
+      <h2 class="title">Feirantes do Shopping <%= @shopping.nome %></h2>
+      
+      <div class="sort-buttons">
+        <%= link_to 'Ordenar por Categoria', home_feirantes_path(order: 'categoria'), class: 'button-confirm' %>
+        <%= link_to 'Ordenar por Nota', home_feirantes_path(order: 'nota'), class: 'button-confirm' %>
+      </div>
 
-  <h2>Lista de Feirantes</h2>
-<%= link_to 'Ordenar por Categoria', home_feirantes_path(order: 'categoria'), class: 'btn btn-primary' %>
-<%= link_to 'Ordenar por Nota', home_feirantes_path(order: 'nota'), class: 'btn btn-primary' %>
-<table border="1">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Nome</th>
-      <th>Email</th>
-      <th>Descrição</th>
-      <th>Categoria</th>
-      <th>Produtos</th>
-      <th>Nota</th>
-      <th>Avaliar</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @feirantes.each do |feirante| %>
-      <tr>
-        <td><%= feirante.id %></td>
-        <td><%= feirante.nome %></td>
-        <td><%= feirante.email %></td>
-        <td><%= feirante.descricao %></td>
-        <td><%= feirante.categoria %></td>
-        <td><%= link_to 'Ver produtos', produtos_feirantes_path(feirante.id) %></td>
-        <td><%= feirante.average_rating %></td>
-        <td>
-          <% if feirante.user_has_reviewed?(current_user) %>
-            <%= link_to 'Editar Avaliação', edit_avaliacao_feirante_path(feirante.user_review(current_user)) %>
-            <%= link_to 'Deletar Avaliação', 
-                avaliacao_feirante_path(feirante.user_review(current_user)), 
-                data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
-          <% else %>
-            <%= link_to 'Avaliar', new_avaliacao_feirante_path(feirante_id: feirante.id) %>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>Categoria</th>
+              <th>Produtos</th>
+              <th>Nota</th>
+              <th>Imagem</th>
+              <th>Avaliar</th>
+            </tr>
+          </thead>
+            <tbody>
+              <% @feirantes.each do |feirante| %>
+                <tr>
+                  <td><%= feirante.id %></td>
+                  <td><%= feirante.nome %></td>
+                  <td><%= feirante.email %></td>
+                  <td><%= feirante.categoria %></td>
+                  <td>
+                    <div class="button-double">
+                      <%= link_to 'Ver produtos', produtos_feirantes_path(feirante.id), class: 'button-confirm', style: 'width: auto;' %>
+                    </div>
+                  </td>
+                  <td><%= feirante.average_rating %></td>
+                  <td><%= image_tag feirante.image, height: "150", style: "border: 5px solid black;" if feirante.image.present? %></td>
+                  <td>
+                    <% if feirante.user_has_reviewed?(current_user) %>
+                      <div class="button-double">
+                        <%= link_to 'Editar', edit_avaliacao_feirante_path(feirante.user_review(current_user)), class: 'button-confirm' %>
+                        <%= link_to 'Deletar', avaliacao_feirante_path(feirante.user_review(current_user)), 
+                            class: 'button-confirm', 
+                            data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
+                      </div>
+                    <% else %>
+                      <%= link_to 'Avaliar', new_avaliacao_feirante_path(feirante_id: feirante.id), class: 'button-confirm' %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+        </table>
+      </div>
+
+      <div class="avaliacoes-section">
+        <h2 class="title">Avaliações do Shopping <%= @shopping.nome%></h2>
+        <div class="avaliacoes-container">
+          <% @shopping.avaliacao_shoppings.each do |avaliacao| %>
+            <div class="avaliacao-card">
+              <div class="user-info">
+                <strong>Usuário:</strong> <%= avaliacao.user.name %>
+                <%= image_tag avaliacao.user.image, height: "100" if avaliacao.user.image.present? %>
+              </div>
+              <div class="avaliacao-content">
+                <p><strong>Nota:</strong> <%= avaliacao.nota %></p>
+                <p><strong>Comentário:</strong> <%= avaliacao.comentario %></p>
+              </div>
+            </div>
           <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h2>Avaliações do Shopping <%= @shopping.nome%> </h2>
-<div class="avaliacoes-container">
-  <% @shopping.avaliacao_shoppings.each do |avaliacao| %>
-    <div class="avaliacao">
-      <p><strong>Nota:</strong> <%= avaliacao.nota %></p>
-      <p><strong>Comentário:</strong> <%= avaliacao.comentario %></p>
-      <p><strong>Usuário:</strong> <%= avaliacao.user.name %></p>
-      ===========================================================
+        </div>
+      </div>
     </div>
-  <% end %>
-</div>
+  </div>
 </body>
 </html>

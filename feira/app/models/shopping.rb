@@ -2,6 +2,7 @@ class Shopping < ApplicationRecord
   include DistanceCalculator
   has_many :avaliacao_shoppings, dependent: :destroy
   has_many :feirantes, dependent: :destroy
+  has_one_attached :image
 
   def average_rating
     avaliacao_shoppings.average(:nota).to_f.round(2)

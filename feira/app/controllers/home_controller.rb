@@ -39,6 +39,8 @@ class HomeController < ApplicationController
         @shoppings = @shoppings.sort_by { |shopping| shopping.distance_to(current_user) }
       elsif params[:sort] == 'nota'
         @shoppings = @shoppings.sort_by { |shopping| -shopping.average_rating }
+      elsif params[:sort] == 'nome'
+        @shoppings = @shoppings.order(:nome)
       end
     end
 
@@ -53,10 +55,16 @@ class HomeController < ApplicationController
       end
     end
 
-      def produtos_feirantes
-        @feirante = Feirante.find(params[:feirante_id])
-        @produtos = @feirante.produtos
+    def produtos_feirantes
+      @feirante = Feirante.find(params[:feirante_id])
+      @produtos = @feirante.produtos
+
+      if params[:order] == 'nome'
+        @produtos = @produtos.order(:nome)
+      elsif params[:order] == 'preco'
+        @produtos = @produtos.order(:preco)
       end
+    end
 
     def anotacoes
         @wish_lists = current_user.wish_lists.includes(:produto)
@@ -68,15 +76,30 @@ class HomeController < ApplicationController
     end
 
     def admin_homepage
-      @shoppings = Shopping.all
+      @shoppings = if params[:sort] == 'nome'
+        Shopping.order(:nome)
+      else
+        Shopping.all
+      end
     end
 
     def admin_feirantes
       @shopping = Shopping.find(params[:shopping_id])
       @feirantes = @shopping.feirantes
+      case params[:sort]
+      when 'nome'
+        @feirantes = @feirantes.order(:nome) if params[:sort] == 'nome'
+      end
     end
 
     def feirante_homepage
+      @produtos = current_feirante.produtos
+      case params[:sort]
+      when 'nome'
+        @produtos = @produtos.order(:nome)
+      when 'preco'
+        @produtos = @produtos.order(:preco)
+      end
     end
 
     def logout

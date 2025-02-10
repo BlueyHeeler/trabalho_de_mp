@@ -1,0 +1,20 @@
+<header>
+  <nav>
+    <ul>
+      <% if current_admin %>
+        <li><%= link_to 'Profile', edit_administrador_path(current_user) %>
+        <li><%= link_to 'Homepage', home_admin_homepage_path %>
+      <% else %>
+        <% if current_feirante %>
+          <li><%= link_to 'Profile', edit_feirante_path(current_user) %>
+          <li><%= link_to 'Homepage', home_feirante_homepage_path %>
+        <% else %>
+            <li><%= link_to 'Profile', edit_user_path(current_user) %>
+            <li><%= link_to 'Homepage', home_feira_path %>
+            <li><%= link_to 'Wish List', home_anotacoes_path %>
+        <% end %>
+      <% end %>
+      <li><%= link_to "Logout", root_path %></li>
+    </ul>
+  </nav>
+</header>

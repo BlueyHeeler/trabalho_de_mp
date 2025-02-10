@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Login</title>
-    <!-- Aqui você pode incluir seus arquivos de CSS para aplicar os estilos (classes "form", "input", "button-confirm", etc.) -->
   </head>
   <body>
     <div class="form-container">
@@ -11,19 +10,15 @@
       <% end %>
 
       <%= form_with url: login_path, method: :post, html: { class: "form" } do |form| %>
-        <!-- Cabeçalho com título -->
         <div class="title">
           Welcome,<br>
           <span>sign up to continue</span>
         </div>
 
-        <!-- Campo de email -->
         <%= form.email_field :email, placeholder: "Email", class: "input", required: true %>
 
-        <!-- Campo de senha -->
         <%= form.password_field :password, placeholder: "Password", class: "input", required: true %>
 
-        <!-- Seção para escolher o tipo de usuário -->
         <div class="user-type" style="margin-top: 1rem;">
           <%= form.label :user_type, "Tipo de Usuário" %>
           <div>
@@ -38,8 +33,10 @@
           </div>
         </div>
 
-        <!-- Botão de submit -->
-        <button type="submit" class="button-confirm">Let`s go →</button>
+        <div style="display: flex; gap: 10px;">
+          <button type="submit" class="button-confirm">Let`s go →</button>
+          <button type="button" class="button-confirm" onclick="window.location.href='/users/new';">Sign Up</button>
+        </div>
       <% end %>
     </div>
   </body>

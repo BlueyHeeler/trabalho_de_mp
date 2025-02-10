@@ -4,45 +4,53 @@
   <title>Anotações</title>
 </head>
 <body>
-  <h1>Anotações</h1>
-  <%= link_to 'Voltar', home_feira_path %>
-  <%= link_to 'Logout', root_path, method: :delete %>
+  <div class="feira-container">
+    <div class="feira-content">
+      <h2 class="title">Lista de Wish List de <%= current_user.name %>!</h2>
+      
+      <div class="navigation-buttons">
+        <%= link_to 'Voltar', home_feira_path, class: 'button-confirm' %>
+      </div>
 
-  <h1>Lista de Wish List de <%= current_user.name %>!</h1>
-  <table border="1">
-    <thead>
-      <tr>
-        <th>Produto</th>
-        <th>Preço</th>
-        <th>Total</th>
-        <th>Data de Criação</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% total_geral = 0 %>
-      <% @wish_lists.each do |wish_list| %>
-        <% total_item = wish_list.produto.preco * wish_list.quantidade %>
-        <% total_geral += total_item %>
-        <tr>
-          <td><%= wish_list.produto.nome %></td>
-          <td>R$ <%= number_with_precision(wish_list.produto.preco, precision: 2) %></td>
-          <td>R$ <%= number_with_precision(total_item, precision: 2) %></td>
-          <td><%= wish_list.created_at %></td>
-          <td>
-            <%= button_to "Destroy this wish list", 
-                wish_list_path(wish_list), 
-                method: :delete,
-                form: { data: { turbo_confirm: 'Are you sure?' } } %>
-          </td>
-        </tr>
-      <% end %>
-      <tr>
-        <td colspan="2"><strong>Total Geral:</strong></td>
-        <td><strong>R$ <%= number_with_precision(total_geral, precision: 2) %></strong></td>
-        <td colspan="2"></td>
-      </tr>
-    </tbody>
-  </table>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Produto</th>
+              <th>Preço</th>
+              <th>Total</th>
+              <th>Data de Criação</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% total_geral = 0 %>
+            <% @wish_lists.each do |wish_list| %>
+              <% total_item = wish_list.produto.preco * wish_list.quantidade %>
+              <% total_geral += total_item %>
+              <tr>
+                <td><%= wish_list.produto.nome %></td>
+                <td>R$ <%= number_with_precision(wish_list.produto.preco, precision: 2) %></td>
+                <td>R$ <%= number_with_precision(total_item, precision: 2) %></td>
+                <td><%= wish_list.created_at %></td>
+                <td>
+                  <%= button_to "Remover", 
+                      wish_list_path(wish_list), 
+                      method: :delete,
+                      class: 'button-confirm',
+                      form: { data: { turbo_confirm: 'Tem certeza?' } } %>
+                </td>
+              </tr>
+            <% end %>
+            <tr class="total-row">
+              <td colspan="2"><strong>Total Geral:</strong></td>
+              <td><strong>R$ <%= number_with_precision(total_geral, precision: 2) %></strong></td>
+              <td colspan="2"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

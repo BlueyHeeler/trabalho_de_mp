@@ -13,6 +13,7 @@ class Feirante < ApplicationRecord
   belongs_to :shopping
   has_many :produtos, dependent: :destroy
   has_many :avaliacao_feirantes, dependent: :destroy
+  has_one_attached :image
 
   def average_rating
     avaliacao_feirantes.average(:nota).to_f.round(2)

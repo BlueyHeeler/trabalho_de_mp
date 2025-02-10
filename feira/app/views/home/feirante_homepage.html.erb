@@ -1,27 +1,32 @@
 <h1>Feirante Homepage</h1>
 
 <p><%= current_feirante.nome %>, você é um feirante!</p>
-<%= link_to 'Logout', root_path, method: :delete %>
+<td><%= image_tag current_feirante.image, height: "150", style: "border: 5px solid black;" if current_feirante.image.present? %></td>
 
 <div class="produtos-table">
   <h2>Seus Produtos</h2>
   
-  <% if current_feirante.produtos.any? %>
+  <%= link_to 'Ordenar por Nome', home_feirante_homepage_path(sort: 'nome'), class: 'button' %>
+  <%= link_to 'Ordenar por Preço', home_feirante_homepage_path(sort: 'preco'), class: 'button' %>
+  
+  <% if @produtos.any? %>
     <table border="1">
       <thead>
         <tr>
           <th>Nome</th>
           <th>Descrição</th>
           <th>Preço</th>
+          <th>Imagem</th>
           <th>Ações</th>
         </tr>
       </thead>
       <tbody>
-        <% current_feirante.produtos.each do |produto| %>
+        <% @produtos.each do |produto| %>
           <tr>
             <td><%= produto.nome %></td>
             <td><%= produto.descricao %></td>
             <td>R$ <%= number_with_precision(produto.preco, precision: 2) %></td>
+            <td><%= image_tag produto.image, height: "150", style: "border: 5px solid black;" if produto.image.present? %></td>
             <td>
               <%= link_to 'Editar', edit_produto_path(produto, feirante_id: current_feirante.id) %> |
               <%= link_to 'Deletar', produto_path(produto), 

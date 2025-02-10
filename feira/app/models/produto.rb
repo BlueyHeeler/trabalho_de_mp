@@ -6,4 +6,5 @@
 class Produto < ApplicationRecord
   belongs_to :feirante
   has_many :wish_lists, dependent: :destroy
+  has_one_attached :image
 end

@@ -1,12 +1,14 @@
 <% content_for :title, "Editing user" %>
 
-<h1>Editing user</h1>
+<div class="feira-container" style="width: 80%;">
+  <h2 class="title">Editing user</h2>
 
-<%= render "form", user: @user %>
+  <%= render "form", user: @user %>
 
-<br>
-
-<div>
-  <%= link_to "Show this user", @user %> |
-  <%= link_to "Back to users", users_path %>
+  <div class="button-double" style="margin-top: 20px;">
+    <%= button_to "Destroy this user", @user, method: :delete, 
+      class: 'button-confirm',
+      data: { turbo_confirm: "Tem certeza que deseja deletar sua conta?" } %>
+    <%= link_to 'Voltar', home_feira_path, class: 'button-confirm', style: 'width: 100px;' %>
+  </div>
 </div>

@@ -55,7 +55,7 @@ class AdministradorsController < ApplicationController
   end
 
   def respond_success(format, action)
-    format.html { redirect_to @administrador, notice: "Administrador was successfully #{action}." }
+    format.html { redirect_to home_admin_homepage_path, notice: "Administrador was successfully #{action}." }
     format.json { render :show, status: (action == "created" ? :created : :ok), location: @administrador }
   end
 

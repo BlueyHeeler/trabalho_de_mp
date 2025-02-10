@@ -1,8 +1,7 @@
-<%= form_with(model: user) do |form| %>
+<%= form_with(model: user, html: { class: "form" }) do |form| %>
   <% if user.errors.any? %>
-    <div style="color: red">
+    <div class="alert">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
       <ul>
         <% user.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -11,32 +10,52 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-field">
+    <%= form.label :name, "Nome: " %>
+    <br>
+    <%= form.text_field :name, class: "input" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :email, "email: " %>
+    <br>
+    <%= form.text_field :email, class: "input" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :password, "Senha:" %>
+    <br>
+    <%= form.password_field :password, class: "input" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :password_confirmation, "Confirmação de Senha" %>
+    <br>
+    <%= form.password_field :password_confirmation, class: "input" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :localizacao, "Localização: " %>
+    <br>
+    <%= form.text_field :localizacao, class: "input" %>
+  </div>
+
+  <div class="form-field">
+    <%= form.label :image, "Imagem: " %>
+    <br>
+    <%= form.file_field :image, class: "input" %>
+    <% if user.image.present? %>
+      <div class="user-info" style="margin-top: 10px;">
+        <%= image_tag user.image, height: "100" %>
+        <div>
+          <%= form.check_box :remove_image %>
+          <%= form.label :remove_image, "Remover imagem" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div>
-    <%= form.label :password, style: "display: block" %>
-    <%= form.password_field :password %>
-  </div>
-
-  <div>
-    <%= form.label :password_confirmation, "Confirmação de Senha", style: "display: block" %>
-    <%= form.password_field :password_confirmation %>
-  </div>
-
-  <div>
-    <%= form.label :localizacao, style: "display: block" %>
-    <%= form.text_field :localizacao %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit class: "button-confirm" %>
   </div>
 <% end %>

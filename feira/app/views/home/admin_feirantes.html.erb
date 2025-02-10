@@ -1,4 +1,6 @@
 <h1>Feirantes do Shopping <%= @shopping.nome %></h1>
+  <%= link_to 'Ordenar por Nome', home_admin_feirantes_path(shopping_id: @shopping.id, sort: 'nome'), class: 'button' %>
+
 
   <table border="1">
     <thead>
@@ -30,4 +32,3 @@
   </table>
   
   <%= link_to 'Novo Feirante', new_feirante_path %>
-  <%= link_to 'Voltar', home_admin_homepage_path %>

@@ -4,44 +4,77 @@
   <title>Produtos do Feirante</title>
 </head>
 <body>
-  <h1>Produtos do Feirante <%= @feirante.nome %></h1>
-  <%= link_to 'Voltar', home_feirantes_path(@feirante.shopping_id) %>
-  <%= link_to 'Logout', logout_path, method: :delete %>
+  <div class="feira-container">
+    <div class="feira-content">
+    <h2 class="title">Detalhes do Feirante</h2>
 
-  <h2>Lista de Produtos</h2>
-  <table border="1">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Descrição</th>
-        <th>Preço</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @produtos.each do |produto| %>
-        <tr>
-          <td><%= produto.id %></td>
-          <td><%= produto.nome %></td>
-          <td><%= produto.descricao %></td>
-          <td><%= produto.preco %></td>
-          <td><%= link_to 'Adicionar à Wish List', adicionar_path(produto) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <div class="feirante-section">
+    <%= link_to 'Voltar', home_feirantes_path(@feirante.shopping_id), class: 'button-confirm' %>
 
-  <h2>Avaliações do Feirante</h2>
-  <div class="avaliacoes-container">
-    <% @feirante.avaliacao_feirantes.each do |avaliacao| %>
-      <div class="avaliacao">
-        <p><strong>Nota:</strong> <%= avaliacao.nota %></p>
-        <p><strong>Comentário:</strong> <%= avaliacao.comentario %></p>
-        <p><strong>Usuário:</strong> <%= avaliacao.user.name %></p>
-        ================================================================
+      <div class="navigation-buttons">
       </div>
-    <% end %>
+      <div class="feirante-card">
+        <div class="feirante-info">
+          <h3><%= @feirante.nome %></h3>
+          <%= image_tag @feirante.image, height: "150", style: "border: 5px solid black;" if @feirante.image.present? %>
+          <p><strong>Categoria:</strong> <%= @feirante.categoria %></p>
+          <p><strong>Descrição:</strong> <%= @feirante.descricao %></p>
+          <p><strong>Nota Média:</strong> <%= @feirante.average_rating %> /5.0</p>
+        </div>
+      </div>
+    </div>
+      <h2 class="title">Produtos do Feirante <%= @feirante.nome %></h2>
+
+      <div class="sort-buttons">
+        <%= link_to 'Ordenar por Nome', produtos_feirantes_path(@feirante.id, order: 'nome'), class: 'button-confirm' %>
+        <%= link_to 'Ordenar por Preço', produtos_feirantes_path(@feirante.id, order: 'preco'), class: 'button-confirm' %>
+      </div>
+
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th>Imagem</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @produtos.each do |produto| %>
+              <tr>
+                <td><%= produto.id %></td>
+                <td><%= produto.nome %></td>
+                <td><%= produto.descricao %></td>
+                <td><%= produto.preco %></td>
+                <td><%= image_tag produto.image, height: "150", style: "border: 5px solid black;" if produto.image.present? %></td>
+                <td><%= link_to 'Adicionar à Wish List', adicionar_path(produto), class: 'button-confirm' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="avaliacoes-section">
+        <h2 class="title">Avaliações do Feirante</h2>
+        <div class="avaliacoes-container">
+          <% @feirante.avaliacao_feirantes.each do |avaliacao| %>
+            <div class="avaliacao-card">
+              <div class="user-info">
+                <strong>Usuário:</strong> <%= avaliacao.user.name %>
+                <%= image_tag avaliacao.user.image, height: "100" if avaliacao.user.image.present? %>
+              </div>
+              <div class="avaliacao-content">
+                <p><strong>Nota:</strong> <%= avaliacao.nota %></p>
+                <p><strong>Comentário:</strong> <%= avaliacao.comentario %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 </html>

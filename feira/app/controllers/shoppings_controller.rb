@@ -65,6 +65,6 @@ class ShoppingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def shopping_params
-      params.expect(shopping: [ :nome, :localizacao, :nota ])
+      params.require(:shopping).permit(:nome, :localizacao, :image)
     end
 end

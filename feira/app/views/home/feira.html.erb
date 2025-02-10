@@ -4,47 +4,56 @@
   <title>Feira</title>
 </head>
 <body>
-  <h1>Bem-vindo à Feira, <%= current_user.name %>!</h1>
+  <div class="feira-container">
+    <div class="feira-content">
+      <h2 class="title">Lista de Shoppings</h2>
+      
+      <div class="sort-buttons">
+        <%= link_to 'Ordenar por Distância', sort_feira_path(sort: 'distance'), class: 'button-confirm' %>
+        <%= link_to 'Ordenar por Nota', sort_feira_path(sort: 'nota'), class: 'button-confirm' %>
+        <%= link_to 'Ordenar por Nome', sort_feira_path(sort: 'nome'), class: 'button-confirm' %>
+      </div>
 
-  <%= link_to 'Logout', root_path, method: :delete %>
-  <%= link_to 'Wish List', home_anotacoes_path %>
-
-  <h2>Lista de Shoppings</h2>
-  <%= link_to 'Ordenar por Distância', sort_feira_path(sort: 'distance'), class: 'btn btn-primary' %>
-  <%= link_to 'Ordenar por Nota', sort_feira_path(sort: 'nota'), class: 'btn btn-primary' %>
-
-  <table border="1">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Localização</th>
-        <th>Feirantes</th>
-        <th>Nota</th>
-        <th>Avaliar</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @shoppings.each do |shopping| %>
-        <tr>
-          <td><%= shopping.id %></td>
-          <td><%= shopping.nome %></td>
-          <td class="distance"><%= shopping.distance_to(current_user).round(2) %> km</td>
-          <td><%= link_to 'Ver feirantes', home_feirantes_path(shopping.id) %></td>
-          <td><%= shopping.average_rating %></td>
-          <td>
-            <% if shopping.user_has_reviewed?(current_user) %>
-              <%= link_to 'Editar Avaliação', edit_avaliacao_shopping_path(shopping.user_review(current_user)) %>
-              <%= link_to 'Deletar Avaliação', 
-                  avaliacao_shopping_path(shopping.user_review(current_user)), 
-                  data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
-            <% else %>
-              <%= link_to 'Avaliar', new_avaliacao_shopping_path(shopping_id: shopping.id) %>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Localização</th>
+              <th>Feirantes</th>
+              <th>Nota</th>
+              <th>Imagem</th>
+              <th>Avaliar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @shoppings.each do |shopping| %>
+              <tr>
+                <td><%= shopping.id %></td>
+                <td><%= shopping.nome %></td>
+                <td class="distance"><%= shopping.distance_to(current_user).round(2) %> km</td>
+                <td><%= link_to 'Ver feirantes', home_feirantes_path(shopping.id), class: 'button-confirm' %></td>
+                <td><%= shopping.average_rating %></td>
+                <td><%= image_tag shopping.image, height: "150", style: "border: 5px solid black;" if shopping.image.present? %></td>
+                <td>
+                  <% if shopping.user_has_reviewed?(current_user) %>
+                    <div class="button-double">
+                      <%= link_to 'Editar', edit_avaliacao_shopping_path(shopping.user_review(current_user)), class: 'button-confirm' %>
+                      <%= link_to 'Deletar', avaliacao_shopping_path(shopping.user_review(current_user)), 
+                          class: 'button-confirm', 
+                          data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
+                    </div>
+                  <% else %>
+                    <%= link_to 'Avaliar', new_avaliacao_shopping_path(shopping_id: shopping.id), class: 'button-confirm' %>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

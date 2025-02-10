@@ -1,4 +1,4 @@
-<%= form_with(model: avaliacao_shopping) do |form| %>
+<%= form_with(model: avaliacao_shopping, html: { class: "form" }) do |form| %>
   <% if avaliacao_shopping.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(avaliacao_shopping.errors.count, "error") %> prohibited this avaliacao_shopping from being saved:</h2>
@@ -11,20 +11,21 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :nota, style: "display: block" %>
-    <%= form.number_field :nota %>
+  <div class="form-field">
+    <%= form.label :nota %>
+    <%= form.number_field :nota, class: "input" %>
   </div>
 
-  <div>
-    <%= form.label :comentario, style: "display: block" %>
-    <%= form.text_area :comentario %>
+  <div class="form-field">
+    <%= form.label :comentario %>
+    <%= form.text_area :comentario, class: "input" %>
   </div>
 
   <%= form.hidden_field :user_id %>
   <%= form.hidden_field :shopping_id %>
 
-  <div>
-    <%= form.submit %>
+  <div class="button-double">
+    <%= form.submit "Salvar", class: "button-confirm" %>
+    <%= link_to 'Voltar', :back, class: "button-confirm" %>
   </div>
 <% end %>

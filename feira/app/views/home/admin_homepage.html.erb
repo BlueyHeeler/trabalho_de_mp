@@ -1,10 +1,6 @@
-Admin Homepage
-
-<%= current_admin.nome %>, você é um administrador!
-
-<%= link_to 'Logout', root_path, method: :delete %>
-
 <h2>Lista de Shoppings</h2>
+<%= link_to 'Ordenar por Nome', home_admin_homepage_path(sort: 'nome'), method: :get, class: 'button' %>
+
 <table border="1">
   <thead>
     <tr>
