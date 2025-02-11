@@ -1,0 +1,18 @@
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+/usr/bin/ruby3.2 -I/usr/lib/ruby/vendor_ruby extconf.rb
+creating Makefile
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-jucg0d sitelibdir\=./.gem.20250210-38670-jucg0d clean
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-jucg0d sitelibdir\=./.gem.20250210-38670-jucg0d
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-jucg0d sitelibdir\=./.gem.20250210-38670-jucg0d install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20250210-38670-jucg0d/skiptrace/internal
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-jucg0d sitelibdir\=./.gem.20250210-38670-jucg0d clean

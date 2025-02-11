@@ -1,0 +1,18 @@
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+/usr/bin/ruby3.2 -I/usr/lib/ruby/vendor_ruby extconf.rb
+creating Makefile
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-ufnn9k sitelibdir\=./.gem.20250210-38670-ufnn9k clean
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-ufnn9k sitelibdir\=./.gem.20250210-38670-ufnn9k
+compiling cparse.c
+linking shared-object racc/cparse.so
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-ufnn9k sitelibdir\=./.gem.20250210-38670-ufnn9k install
+/usr/bin/install -c -m 0755 cparse.so ./.gem.20250210-38670-ufnn9k/racc
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/racc-1.8.1/ext/racc/cparse
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-ufnn9k sitelibdir\=./.gem.20250210-38670-ufnn9k clean

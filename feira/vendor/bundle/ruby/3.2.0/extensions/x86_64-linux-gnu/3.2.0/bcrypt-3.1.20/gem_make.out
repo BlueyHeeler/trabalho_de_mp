@@ -1,0 +1,25 @@
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
+/usr/bin/ruby3.2 -I/usr/lib/ruby/vendor_ruby extconf.rb
+creating Makefile
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-kjx6gb sitelibdir\=./.gem.20250210-38670-kjx6gb clean
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-kjx6gb sitelibdir\=./.gem.20250210-38670-kjx6gb
+compiling bcrypt_ext.c
+compiling crypt_blowfish.c
+compiling crypt_gensalt.c
+compiling wrapper.c
+wrapper.c:182:60: warning: ‘struct crypt_data’ declared inside parameter list will not be visible outside of this definition or declaration
+  182 | char *crypt_r(const char *key, const char *setting, struct crypt_data *data)
+      |                                                            ^~~~~~~~~~
+x86_64-linux-gnu-gcc  -D__SKIP_GNU -Wdate-time -D_FORTIFY_SOURCE=3    -c -o x86.o x86.S
+linking shared-object bcrypt_ext.so
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-kjx6gb sitelibdir\=./.gem.20250210-38670-kjx6gb install
+/usr/bin/install -c -m 0755 bcrypt_ext.so ./.gem.20250210-38670-kjx6gb
+
+current directory: /mnt/B25C5FD15C5F8F4B/ProjetoMP/trabalho_de_mp/feira/vendor/bundle/ruby/3.2.0/gems/bcrypt-3.1.20/ext/mri
+make DESTDIR\= sitearchdir\=./.gem.20250210-38670-kjx6gb sitelibdir\=./.gem.20250210-38670-kjx6gb clean
