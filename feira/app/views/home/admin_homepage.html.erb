@@ -1,6 +1,8 @@
 <h2>Lista de Shoppings</h2>
 <%= link_to 'Ordenar por Nome', home_admin_homepage_path(sort: 'nome'), method: :get, class: 'button' %>
-
+<p>Total de clientes: <%= User.all.count %></p>
+<p>Total de shoppings: <%= Shopping.all.count %></p>
+<p>Total de feirantes: <%= Feirante.all.count %></p>
 <table border="1">
   <thead>
     <tr>

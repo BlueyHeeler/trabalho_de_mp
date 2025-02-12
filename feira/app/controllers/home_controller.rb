@@ -59,6 +59,8 @@ class HomeController < ApplicationController
         @feirantes = @feirantes.order(:categoria)
       elsif params[:order] == 'nota'
         @feirantes = @feirantes.sort_by { |feirante| -feirante.average_rating }
+      elsif params[:order] == 'nome'
+        @feirantes = @feirantes.order(:nome)
       end
     end
 

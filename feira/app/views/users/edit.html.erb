@@ -79,7 +79,9 @@
     <div>
       <%= form.submit class: "button-confirm" %>
     </div>
-    <div class="avaliacoes-section">
+  <% end %>  
+
+  <div class="avaliacoes-section">
     <h2 class="title">Minhas Avaliações</h2>
     <div class="avaliacoes-container", style="width: 1350px;">
       <% @user.avaliacao_feirantes.each do |avaliacao| %>
@@ -94,6 +96,18 @@
           </div>
         </div>
       <% end %>
+      <% @user.avaliacao_shopping.each do |avaliacao| %>
+      <div class="avaliacao-card">
+        <div class="user-info">
+          <strong>Shopping:</strong> <%= avaliacao.shopping.nome %>
+          <%= image_tag avaliacao.shopping.image, height: "100", width: "70" if avaliacao.shopping.image.present? %>
+        </div>
+        <div class="avaliacao-content">
+          <p><strong>Nota:</strong> <%= avaliacao.nota %></p>
+          <p><strong>Comentário:</strong> <%= avaliacao.comentario %></p>
+        </div>
+      </div>
+    <% end %>
     </div>
   </div>
 
@@ -112,10 +126,11 @@
   </div>
 
   <div class="button-double" style="margin-top: 20px;">
-    <%= button_to "Destroy this user", @user, method: :delete, 
-      class: 'button-confirm',
-      data: { turbo_confirm: "Tem certeza que deseja deletar sua conta?" } %>
+    <%= button_to "Destroy this user", 
+                  user_path(@user), 
+                  method: :delete,
+                  class: "button-confirm",
+                  data: { turbo_confirm: "Tem certeza que deseja deletar sua conta?" } %>
     <%= link_to 'Voltar', home_feira_path, class: 'button-confirm', style: 'width: 100px;' %>
   </div>
-  <% end %>
 </div>

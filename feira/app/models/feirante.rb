@@ -15,6 +15,9 @@ class Feirante < ApplicationRecord
   has_many :avaliacao_feirantes, dependent: :destroy
   has_one_attached :image
 
+  validates :email, presence: true, 
+    format: { with: /@/, message: "deve incluir um '@'" }
+
   def average_rating
     avaliacao_feirantes.average(:nota).to_f.round(2)
   end
