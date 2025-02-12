@@ -61,6 +61,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def create_temp_user
+    temp_user = User.new(
+      email: "temp_#{Time.now.to_i}@temp.com",
+      password: SecureRandom.hex(10),
+      localizacao: params[:location],
+      name: "Visitante"
+    )
+
+    if temp_user.save
+      session[:user_id] = temp_user.id
+      redirect_to home_feira_path
+    else
+      redirect_to root_path, alert: "Erro ao criar usuário temporário"
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

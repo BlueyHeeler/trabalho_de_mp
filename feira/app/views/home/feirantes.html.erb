@@ -42,7 +42,9 @@
                   <td><%= feirante.average_rating %></td>
                   <td><%= image_tag feirante.image, height: "150", style: "border: 5px solid black;" if feirante.image.present? %></td>
                   <td>
-                    <% if feirante.user_has_reviewed?(current_user) %>
+                    <% if temp_user? %>
+                      Fazer Login para Avaliar
+                    <% elsif feirante.user_has_reviewed?(current_user) %>
                       <div class="button-double">
                         <%= link_to 'Editar', edit_avaliacao_feirante_path(feirante.user_review(current_user)), class: 'button-confirm' %>
                         <%= link_to 'Deletar', avaliacao_feirante_path(feirante.user_review(current_user)), 

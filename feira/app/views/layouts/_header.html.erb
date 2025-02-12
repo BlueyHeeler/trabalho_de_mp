@@ -2,19 +2,23 @@
   <nav>
     <ul>
       <% if current_admin %>
-        <li><%= link_to 'Profile', edit_administrador_path(current_user) %>
-        <li><%= link_to 'Homepage', home_admin_homepage_path %>
+        <li><%= button_to 'Profile', edit_administrador_path(current_user), method: :get %>
+        <li><%= button_to 'Homepage', home_admin_homepage_path, method: :get %>
       <% else %>
         <% if current_feirante %>
-          <li><%= link_to 'Profile', edit_feirante_path(current_user) %>
-          <li><%= link_to 'Homepage', home_feirante_homepage_path %>
+          <li><%= button_to 'Profile', edit_feirante_path(current_user), method: :get %>
+          <li><%= button_to 'Homepage', home_feirante_homepage_path, method: :get %>
         <% else %>
-            <li><%= link_to 'Profile', edit_user_path(current_user) %>
-            <li><%= link_to 'Homepage', home_feira_path %>
-            <li><%= link_to 'Wish List', home_anotacoes_path %>
+          <% if current_user && !temp_user? %>
+            <li><%= button_to 'Profile', edit_user_path(current_user), method: :get, class: 'button-confirm', style: 'margin: 5px;' %></li>
+          <% end %>
+          <li><%= button_to 'Homepage', home_feira_path, method: :get, class: 'button-confirm', style: 'margin: 5px;' %>
+          <li><%= button_to 'Wish List', home_anotacoes_path, method: :get, class: 'button-confirm', style: 'margin: 5px;' %>
         <% end %>
       <% end %>
-      <li><%= link_to "Logout", root_path %></li>
+      <li>
+        <%= button_to "Logout", logout_path, method: :delete, class: 'button-confirm', style: 'margin: 5px 5px 5px 5px;' %>
+      </li>
     </ul>
   </nav>
 </header>

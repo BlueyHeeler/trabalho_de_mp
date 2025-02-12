@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :current_admin
   helper_method :current_feirante
+  helper_method :temp_user?
   
   private
   
@@ -36,5 +37,9 @@ class ApplicationController < ActionController::Base
       flash[:alert] = "Acesso restrito para administradores."
       redirect_to login_path
     end
+  end
+
+  def temp_user?
+    current_user&.name == "Visitante"
   end
 end

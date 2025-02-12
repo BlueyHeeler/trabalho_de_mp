@@ -21,7 +21,7 @@
   header {
     max-width: 20000px;
     margin: 1rem auto;
-    padding: 20px;
+    padding: 10px 20px; /* Reduced from 20px to 10px */
     background: #5bb7b6;
     border-radius: 5px;
     border: 2px solid var(--main-color);
@@ -32,6 +32,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    min-height: 40px; /* Added to ensure consistent height */
   }
   
   nav ul {

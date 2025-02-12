@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  has_many :wish_lists
+  has_many :wish_lists, dependent: :destroy
   has_one_attached :image
 
   def coordinates

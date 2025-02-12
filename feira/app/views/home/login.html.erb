@@ -9,7 +9,7 @@
         <p style="color: red;"><%= flash[:alert] %></p>
       <% end %>
 
-      <%= form_with url: login_path, method: :post, html: { class: "form" } do |form| %>
+      <%= form_with url: login_path, method: :post, html: { class: "form", style: "width: 385px;" } do |form| %>
         <div class="title">
           Welcome,<br>
           <span>sign up to continue</span>
@@ -36,6 +36,7 @@
         <div style="display: flex; gap: 10px;">
           <button type="submit" class="button-confirm">Let`s go →</button>
           <button type="button" class="button-confirm" onclick="window.location.href='/users/new';">Sign Up</button>
+          <button type="button" class="button-confirm" onclick="window.location.href='/home/start_page';">Voltar</button>
         </div>
       <% end %>
     </div>

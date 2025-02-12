@@ -6,7 +6,7 @@
 <body>
   <div class="feira-container">
     <div class="feira-content">
-      <h2 class="title">Lista de Shoppings</h2>
+      <h2 class="title">Lista de Feiras</h2>
       
       <div class="sort-buttons">
         <%= link_to 'Ordenar por Distância', sort_feira_path(sort: 'distance'), class: 'button-confirm' %>
@@ -32,12 +32,20 @@
               <tr>
                 <td><%= shopping.id %></td>
                 <td><%= shopping.nome %></td>
-                <td class="distance"><%= shopping.distance_to(current_user).round(2) %> km</td>
+                <td class="distance">
+                  <% if shopping.coordinates.present? && current_user&.coordinates.present? %>
+                    <%= shopping.distance_to(current_user).round(2) %> km
+                  <% else %>
+                    Distância indisponível
+                  <% end %>
+                </td>
                 <td><%= link_to 'Ver feirantes', home_feirantes_path(shopping.id), class: 'button-confirm' %></td>
                 <td><%= shopping.average_rating %></td>
                 <td><%= image_tag shopping.image, height: "150", style: "border: 5px solid black;" if shopping.image.present? %></td>
                 <td>
-                  <% if shopping.user_has_reviewed?(current_user) %>
+                  <% if temp_user? %>
+                      Fazer Login para Avaliar
+                  <% elsif shopping.user_has_reviewed?(current_user) %>
                     <div class="button-double">
                       <%= link_to 'Editar', edit_avaliacao_shopping_path(shopping.user_review(current_user)), class: 'button-confirm' %>
                       <%= link_to 'Deletar', avaliacao_shopping_path(shopping.user_review(current_user)), 

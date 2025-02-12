@@ -34,6 +34,10 @@ test:
 	@echo "Executando testes com Cucumber..."
 	bundle exec cucumber
 
+rspec:
+	@echo "Executando testes com RSpec..."
+	bundle exec rspec spec/model
+
 # Executa o RuboCop para verificação de padrão de código
 rubocop: 
 	@echo "Verificando padrão de código com RuboCop..."
@@ -48,10 +52,6 @@ reek:
 yard: 
 	@echo "Gerando documentação com YARD..."
 	yard doc
-
-rspec:
-	@echo "Executando testes com RSpec..."
-	bundle exec rspec spec/features
 
 # Tarefa padrão: instala as gems e executa as migrações
 all: install migrate

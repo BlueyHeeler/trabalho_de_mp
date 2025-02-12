@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-    before_action :require_login, only: [ :feira ]
+    before_action :require_login, only: [:anotacoes], except: [:start_page, :login, :authenticate] # Add start_page to exceptions
 
     def login
     end
@@ -28,14 +28,21 @@ class HomeController < ApplicationController
     end
 
     def logout
+      if temp_user? && current_user
+        current_user.destroy
+      end
+      
       session[:user_id] = nil
-      redirect_to login_path, notice: "Logged out"
+      session[:user_type] = nil
+      
+      redirect_to login_path, notice: "Logged out successfully"
     end
 
     def feira
       @shoppings = Shopping.all
+      @is_temp = temp_user?
   
-      if params[:sort] == 'distance'
+      if params[:sort] == 'distance' && current_user&.coordinates.present?
         @shoppings = @shoppings.sort_by { |shopping| shopping.distance_to(current_user) }
       elsif params[:sort] == 'nota'
         @shoppings = @shoppings.sort_by { |shopping| -shopping.average_rating }
@@ -102,9 +109,8 @@ class HomeController < ApplicationController
       end
     end
 
-    def logout
-      session[:user_id] = nil
-      session[:user_type] = nil
-      redirect_to login_path, notice: "Logged out successfully"
+    def start_page
+        # Empty method is fine since it just needs to render the view
+        # The form in the view will handle the temp user creation through users_controller
     end
 end
