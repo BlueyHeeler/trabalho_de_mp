@@ -10,49 +10,65 @@
     </div>
   <% end %>
 
-  <div class="form-field">
-    <%= form.label :name, "Nome: " %>
-    <br>
-    <%= form.text_field :name, class: "input" %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :email, "email: " %>
-    <br>
-    <%= form.text_field :email, class: "input" %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :password, "Senha:" %>
-    <br>
-    <%= form.password_field :password, class: "input" %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :password_confirmation, "Confirmação de Senha" %>
-    <br>
-    <%= form.password_field :password_confirmation, class: "input" %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :localizacao, "Localização: " %>
-    <br>
-    <%= form.text_field :localizacao, class: "input" %>
-  </div>
-
-  <div class="form-field">
-    <%= form.label :image, "Imagem: " %>
-    <br>
-    <%= form.file_field :image, class: "input" %>
-    <% if user.image.present? %>
-      <div class="user-info" style="margin-top: 10px;">
-        <%= image_tag user.image, height: "100" %>
-        <div>
-          <%= form.check_box :remove_image %>
-          <%= form.label :remove_image, "Remover imagem" %>
+  <div class="form-row">
+    <div class="user-image-section">
+      <% if user.image.present? %>
+        <div class="current-image">
+          <%= image_tag user.image, class: "profile-image" %>
         </div>
+      <% end %>
+      <div class="image-upload">
+        <%= form.label :image, "Foto do perfil:" %>
+        <br>
+        <%= form.file_field :image, class: "input-file", style: "background-color: #5bb7b6;" %>
       </div>
-    <% end %>
+      
+      <% if user.image.present? %>
+        <div class="checkbox-wrapper" style="background-color: #5bb7b6;">
+          <%= form.check_box :remove_image, class: "styled-checkbox", id: "remove-image" %>
+          <%= form.label :remove_image, "Remover imagem", class: "styled-label", style: "background-color: #5bb7b6;", for: "remove-image" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-fields-section">
+      <div class="form-fields-grid">
+        <div class="form-row">
+
+          <div class="form-field">
+            <%= form.label :name, "Nome: " %>
+            <br>
+            <%= form.text_field :name, class: "input" %>
+          </div>
+
+          <div class="form-field">
+          <%= form.label :email, "email: " %>
+          <br>
+          <%= form.text_field :email, class: "input" %>
+          </div>
+        
+        </div>
+
+        <div class="form-field">
+          <%= form.label :password, "Senha:" %>
+          <br>
+          <%= form.password_field :password, class: "input" %>
+        </div>
+
+        <div class="form-field">
+          <%= form.label :password_confirmation, "Confirmação de Senha" %>
+          <br>
+          <%= form.password_field :password_confirmation, class: "input" %>
+        </div>
+
+        <div class="form-field">
+            <%= form.label :localizacao, "Localização: " %>
+            <br>
+            <%= form.text_field :localizacao, class: "input" %>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <div>

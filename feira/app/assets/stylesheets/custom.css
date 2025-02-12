@@ -1,6 +1,6 @@
 /* From Uiverse.io by ayyjayy2 */ 
 .form-container {
-  max-width: 400px;
+  max-width: 500px;
   margin: 2rem auto;
   padding: 20px;
 }
@@ -240,7 +240,7 @@
 }
 
 .total-row {
-  background-color: #5bb7b6;
+  background-color: beige;
   font-size: 1.1em;
 }
 

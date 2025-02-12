@@ -40,6 +40,8 @@ class ApplicationController < ActionController::Base
   end
 
   def temp_user?
-    current_user&.name == "Visitante"
+    if current_user.is_a?(User)
+      current_user&.name == "Visitante"
+    end
   end
 end

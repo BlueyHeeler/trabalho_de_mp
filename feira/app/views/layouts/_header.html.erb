@@ -2,12 +2,12 @@
   <nav>
     <ul>
       <% if current_admin %>
-        <li><%= button_to 'Profile', edit_administrador_path(current_user), method: :get %>
-        <li><%= button_to 'Homepage', home_admin_homepage_path, method: :get %>
+        <li><%= button_to 'Profile', edit_administrador_path(current_user), method: :get, class: 'button-confirm', style: 'margin: 5px;' %></li>
+        <li><%= button_to 'Homepage', home_admin_homepage_path, method: :get, class: 'button-confirm', style: 'margin: 5px;' %></li>
       <% else %>
         <% if current_feirante %>
-          <li><%= button_to 'Profile', edit_feirante_path(current_user), method: :get %>
-          <li><%= button_to 'Homepage', home_feirante_homepage_path, method: :get %>
+          <li><%= button_to 'Profile', edit_feirante_path(current_user), method: :get, class: 'button-confirm', style: 'margin: 5px;' %></li>
+          <li><%= button_to 'Homepage', home_feirante_homepage_path, method: :get, class: 'button-confirm', style: 'margin: 5px;' %></li>
         <% else %>
           <% if current_user && !temp_user? %>
             <li><%= button_to 'Profile', edit_user_path(current_user), method: :get, class: 'button-confirm', style: 'margin: 5px;' %></li>

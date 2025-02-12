@@ -1,9 +1,115 @@
 <% content_for :title, "Editing user" %>
 
-<div class="feira-container" style="width: 80%;">
-  <h2 class="title">Editing user</h2>
+<div class="feira-container" style="max-width: 1400px;">
+  <h2 class="title">Perfil</h2>
 
-  <%= render "form", user: @user %>
+  <%= form_with(model: @user, html: { class: "form" }) do |form| %>
+    <% if @user.errors.any? %>
+      <div class="alert">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+        <ul>
+          <% user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="form-row">
+      <div class="user-image-section">
+        <% if @user.image.present? %>
+          <div class="current-image">
+            <%= image_tag @user.image, class: "profile-image" %>
+          </div>
+        <% end %>
+        <div class="image-upload">
+          <%= form.label :image, "Foto do perfil:" %>
+          <br>
+          <%= form.file_field :image, class: "input-file", style: "background-color: #5bb7b6;" %>
+        </div>
+        
+        <% if @user.image.present? %>
+          <div class="checkbox-wrapper" style="background-color: #5bb7b6;">
+            <%= form.check_box :remove_image, class: "styled-checkbox", id: "remove-image" %>
+            <%= form.label :remove_image, "Remover imagem", class: "styled-label", style: "background-color: #5bb7b6;", for: "remove-image" %>
+          </div>
+        <% end %>
+      </div>
+  
+      <div class="form-fields-section">
+        <div class="form-fields-grid">
+          <div class="form-row">
+  
+            <div class="form-field">
+              <%= form.label :name, "Nome: " %>
+              <br>
+              <%= form.text_field :name, class: "input" %>
+            </div>
+  
+            <div class="form-field">
+            <%= form.label :email, "email: " %>
+            <br>
+            <%= form.text_field :email, class: "input" %>
+            </div>
+          
+          </div>
+  
+          <div class="form-field">
+            <%= form.label :password, "Senha:" %>
+            <br>
+            <%= form.password_field :password, class: "input" %>
+          </div>
+  
+          <div class="form-field">
+            <%= form.label :password_confirmation, "Confirmação de Senha" %>
+            <br>
+            <%= form.password_field :password_confirmation, class: "input" %>
+          </div>
+  
+          <div class="form-field">
+              <%= form.label :localizacao, "Localização: " %>
+              <br>
+              <%= form.text_field :localizacao, class: "input" %>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+    <div>
+      <%= form.submit class: "button-confirm" %>
+    </div>
+    <div class="avaliacoes-section">
+    <h2 class="title">Minhas Avaliações</h2>
+    <div class="avaliacoes-container", style="width: 1350px;">
+      <% @user.avaliacao_feirantes.each do |avaliacao| %>
+        <div class="avaliacao-card">
+          <div class="user-info">
+            <strong>Feirante:</strong> <%= avaliacao.feirante.nome %>
+            <%= image_tag avaliacao.feirante.image, height: "100" if avaliacao.feirante.image.present? %>
+          </div>
+          <div class="avaliacao-content">
+            <p><strong>Nota:</strong> <%= avaliacao.nota %></p>
+            <p><strong>Comentário:</strong> <%= avaliacao.comentario %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="avaliacoes-section">
+    <h2 class="title">Minha Wish List</h2>
+    <div class="wish-list-container", style="width: 1350px;">
+      <% @user.wish_lists.each do |wish_list| %>
+        <div class="wish-list-card">
+          <%= image_tag wish_list.produto.image, class: "produto-image" if wish_list.produto.image.present? %>
+          <div class="produto-info">
+            <h3><%= wish_list.produto.nome %></h3>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
   <div class="button-double" style="margin-top: 20px;">
     <%= button_to "Destroy this user", @user, method: :delete, 
@@ -11,4 +117,5 @@
       data: { turbo_confirm: "Tem certeza que deseja deletar sua conta?" } %>
     <%= link_to 'Voltar', home_feira_path, class: 'button-confirm', style: 'width: 100px;' %>
   </div>
+  <% end %>
 </div>
